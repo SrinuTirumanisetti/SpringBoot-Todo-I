@@ -1,19 +1,8 @@
-/*
- * You can use the following import statements
- * 
- * import org.springframework.web.server.ResponseStatusException;
- * import org.springframework.http.HttpStatus;
- * 
- */
-
 package com.example.todo;
 
 import com.example.todo.Todo;
 import com.example.todo.TodoRepository;
-
 import java.util.*;
-
-// Do not modify the below code
 
 public class TodoService implements TodoRepository {
 
@@ -25,11 +14,10 @@ public class TodoService implements TodoRepository {
         todoList.put(3, new Todo(3, "Buy Groceries", "MEDIUM", "TO DO"));
         todoList.put(4, new Todo(4, "Learning from NxtWave", "HIGH", "IN PROGRESS"));
         todoList.put(5, new Todo(5, "Go for a Run", "MEDIUM", "DONE"));
-
     }
 
-    // Do not modify the above code
-
-    // Write your code here
-
+    @Override
+    public List<Todo> getTodos() {
+        return new ArrayList<>(todoList.values());
+    }
 }
