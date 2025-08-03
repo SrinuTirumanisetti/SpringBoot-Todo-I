@@ -1,1 +1,7 @@
-// Write your code here
+package com.example.todo;
+
+import java.util.*;
+
+public interface TodoRepository {
+    List<Todo> getTodos();
+}
