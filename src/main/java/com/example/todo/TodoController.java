@@ -1,9 +1,15 @@
-/*
- * You can use the following import statements
- * 
- * import org.springframework.web.bind.annotation.*;
- * import java.util.*;
- * 
- */
+package com.example.todo;
 
-// Write your code here
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+
+@RestController
+public class TodoController {
+
+    TodoService todoService = new TodoService();
+
+    @GetMapping("/todos")
+    public List<Todo> getTodos() {
+        return todoService.getTodos();
+    }
+}
