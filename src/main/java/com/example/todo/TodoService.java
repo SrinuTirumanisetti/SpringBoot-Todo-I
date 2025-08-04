@@ -7,6 +7,7 @@ import java.util.*;
 public class TodoService implements TodoRepository {
 
     private static HashMap<Integer, Todo> todoList = new HashMap<>();
+    private static int currentId = 6; // Next ID to be assigned
 
     public TodoService() {
         todoList.put(1, new Todo(1, "Watch Movie", "LOW", "TO DO"));
@@ -20,4 +21,12 @@ public class TodoService implements TodoRepository {
     public List<Todo> getTodos() {
         return new ArrayList<>(todoList.values());
     }
+
+    @Override
+    public Todo addTodo(Todo todo) {
+        todo.setId(currentId++);
+        todoList.put(todo.getId(), todo);
+        return todo;
+    }
 }
+

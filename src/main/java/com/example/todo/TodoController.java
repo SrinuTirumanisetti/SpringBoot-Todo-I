@@ -12,4 +12,9 @@ public class TodoController {
     public List<Todo> getTodos() {
         return todoService.getTodos();
     }
+
+    @PostMapping("/todos")
+    public Todo createTodo(@RequestBody Todo todo) {
+        return todoService.addTodo(todo);
+    }
 }
