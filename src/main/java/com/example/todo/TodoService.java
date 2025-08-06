@@ -28,5 +28,11 @@ public class TodoService implements TodoRepository {
         todoList.put(todo.getId(), todo);
         return todo;
     }
+
+    @Override
+    public Todo getTodoById(int id) {
+        return todoList.get(id);
+    }
+
 }
 
