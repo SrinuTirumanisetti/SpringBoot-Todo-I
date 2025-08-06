@@ -34,5 +34,15 @@ public class TodoService implements TodoRepository {
         return todoList.get(id);
     }
 
+    @Override
+    public Todo updateTodoStatus(int id, String status) {
+    Todo todo = todoList.get(id);
+    if (todo == null) {
+        return null;
+    }
+    todo.setStatus(status);
+    return todo;
+    }
+
 }
 
