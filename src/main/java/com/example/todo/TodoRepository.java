@@ -1,11 +1,11 @@
 package com.example.todo;
 
+import com.example.todo.Todo;
 import java.util.*;
 
 public interface TodoRepository {
-    List<Todo> getTodos();
-    Todo addTodo(Todo todo);
+    List<Todo> getTodoList();
+    Todo addTodoItem(Todo todo);
     Todo getTodoById(int id);
-    public Todo updateTodoStatus(int id, String status);
 }
 

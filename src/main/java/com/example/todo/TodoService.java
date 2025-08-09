@@ -1,9 +1,12 @@
 package com.example.todo;
 
-import com.example.todo.Todo;
-import com.example.todo.TodoRepository;
+import org.springframework.stereotype.Service;
 import java.util.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
+
+@Service
 public class TodoService implements TodoRepository {
 
     private static HashMap<Integer, Todo> todoList = new HashMap<>();
@@ -18,31 +21,24 @@ public class TodoService implements TodoRepository {
     }
 
     @Override
-    public List<Todo> getTodos() {
+    public List<Todo> getTodoList(){
         return new ArrayList<>(todoList.values());
     }
 
     @Override
-    public Todo addTodo(Todo todo) {
-        todo.setId(currentId++);
-        todoList.put(todo.getId(), todo);
+    public Todo addTodoItem(Todo todo){
+        todo.setId(currentId);
+        todoList.put(currentId,todo);
+        currentId+=1;
         return todo;
     }
 
     @Override
-    public Todo getTodoById(int id) {
-        return todoList.get(id);
+    public Todo getTodoById(int id){
+        Todo todo = todoList.get(id);
+        if(todo==null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return todo;
     }
-
-    @Override
-    public Todo updateTodoStatus(int id, String status) {
-    Todo todo = todoList.get(id);
-    if (todo == null) {
-        return null;
-    }
-    todo.setStatus(status);
-    return todo;
-    }
-
 }
-
