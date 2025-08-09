@@ -41,4 +41,27 @@ public class TodoService implements TodoRepository {
         }
         return todo;
     }
+
+    @Override
+    public Todo updateTodoById(int id,Todo todo){
+        Todo existingtodo = todoList.get(id);
+        if(todo.getTodo()!=null){
+            existingtodo.setTodo(todo.getTodo());
+        }
+        if(todo.getPriority()!=null){
+            existingtodo.setPriority(todo.getPriority());
+        }
+        if(todo.getStatus()!=null){
+            existingtodo.setStatus(todo.getStatus());
+        }
+        return existingtodo;
+    }
+
+    @Override
+    public void deleteTodo(int id){
+        if(todoList.get(id)==null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        todoList.remove(id);
+    }
 }
